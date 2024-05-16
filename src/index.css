@@ -1,0 +1,57 @@
+/**Title bar css**/
+.title{
+  text-align: center;
+}
+.title_hr{
+  color:red;
+  border:2px solid red;
+}
+/**Side bar css**/
+.sidebar{
+  background-color:hotpink;
+  color:white;
+  min-height: 80vh;
+}
+.sidebar-brand{
+  color:white;
+  font-weight:bolder;
+  text-decoration: none;
+}
+/**Form css**/
+@media screen and (min-width: 900px) {
+  .myform{
+    display:flex;
+  }
+}
+h1{
+  text-align: center;
+}
+.myform{
+  border:1px solid gray;
+  margin-top:2rem;
+  border-radius: 1rem;
+  padding:2rem;
+}
+.myform label{
+width:10rem;
+font-size: 18px;
+font-style: italic;
+font-weight: bold;
+}
+.myform h3{
+font-size: 24px;
+font-style: italic;
+font-weight: bold;
+}
+.myform div{
+ margin-bottom:1rem;
+}
+.error_message{
+color:red;
+font-size: 12px !important;
+}
+/**Table css**/
+Table{
+  border:2px solid gray;
+  border-radius: 2rem !important;
+}

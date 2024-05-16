@@ -1,0 +1,175 @@
+import axios from "axios";
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Col, Container, Row, Button } from "react-bootstrap";
+import * as Yup from "yup";
+const Editbook = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [editbook, setEditBook] = useState({
+    book: {
+      title: "",
+      author: "",
+      isbn: "",
+      pubdate: "",
+    },
+    author: {
+      name: "",
+      dob: "",
+      biography: "",
+    },
+  });
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const fetchdata = async () => {
+    await axios
+      .get(`https://6643a2606c6a65658707de9e.mockapi.io/api/book/${id}`)
+      .then((res) => setEditBook(res.data))
+      .catch((error) => console.log("error"));
+  };
+
+  useEffect(() => {
+    formik.setValues(editbook);
+  }, [editbook]);
+
+  const validationschema = Yup.object().shape({
+    book: Yup.object().shape({
+      title: Yup.string().required("Field is empty"),
+      author: Yup.string().required("Field is empty"),
+      isbn: Yup.string().required("Field is empty"),
+      pubdate: Yup.string().required("Field is empty"),
+    }),
+    author: Yup.object().shape({
+      name: Yup.string().required("Field is empty"),
+      dob: Yup.string().required("Field is empty"),
+      biography: Yup.string().required("Field is empty"),
+    }),
+  });
+
+  const handleSubmit = async (values) => {
+    //console.log(values);
+    await axios
+      .put(`https://6643a2606c6a65658707de9e.mockapi.io/api/book/${id}`, values)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+    navigate("/dashboard");
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      book: {
+        title: "",
+        author: "",
+        isbn: "",
+        pubdate: "",
+      },
+      author: {
+        name: "",
+        dob: "",
+        biography: "",
+      },
+    },
+    validationSchema: validationschema,
+    onSubmit: handleSubmit,
+  });
+  //console.log(formik.errors);
+  return (
+    /**Edit book starts */
+    <section>
+      <Container>
+        <h1>Edit Book</h1>
+        <Row className="gx-4 gy-2 gx-lg-5 row-cols-1 userlist_container">
+          <form onSubmit={formik.handleSubmit} className="myform">
+            <Col>
+              <div>
+                <h3>Book Details</h3>
+                <label>Book Name :</label>
+                <input
+                  type="text"
+                  name="book.title"
+                  value={formik.values.book.title}
+                  onChange={formik.handleChange}
+                  placeholder="Title of the book"
+                />
+                {/* {formik.errors.book.title ? (<div classname="error_message">{formik.errors.book.title}</div>) : null } */}
+              </div>
+              <div>
+                <label>Author name :</label>
+                <input
+                  type="text"
+                  name="book.author"
+                  placeholder="Author of book"
+                  onChange={formik.handleChange}
+                  value={formik.values.book.author}
+                />
+              </div>
+              <div>
+                <label>ISBN :</label>
+                <input
+                  type="text"
+                  name="book.isbn"
+                  placeholder="Book ISBN"
+                  onChange={formik.handleChange}
+                  value={formik.values.book.isbn}
+                />
+              </div>
+              <div>
+                <label>Publication Date :</label>
+                <input
+                  type="date"
+                  name="book.pubdate"
+                  placeholder="Publication date"
+                  onChange={formik.handleChange}
+                  value={formik.values.book.pubdate}
+                />
+              </div>
+            </Col>
+            <Col>
+              <div>
+                <h3>Author Details</h3>
+                <label>Name of Author :</label>
+                <input
+                  type="text"
+                  name="author.name"
+                  placeholder="Author's name"
+                  onChange={formik.handleChange}
+                  value={formik.values.author.name}
+                />
+              </div>
+              <div>
+                <label>Date of Birth :</label>
+                <input
+                  type="date"
+                  name="author.dob"
+                  placeholder="Author's DOB"
+                  onChange={formik.handleChange}
+                  value={formik.values.author.dob}
+                />
+              </div>
+              <div>
+                <label>Biography :</label>
+                <input
+                  type="text"
+                  name="author.biography"
+                  placeholder="Short description about author"
+                  onChange={formik.handleChange}
+                  value={formik.values.author.biography}
+                />
+              </div>
+              <Button type="submit" variant="success">
+                Update
+              </Button>
+            </Col>
+          </form>
+        </Row>
+      </Container>
+    </section>
+    /**Edit book ends */
+  );
+};
+
+export default Editbook;
