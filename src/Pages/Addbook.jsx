@@ -23,7 +23,7 @@ const Addbook = () => {
     book: Yup.object().shape({
       title: Yup.string().required("Field is empty"),
       author: Yup.string().required("Field is empty"),
-      isbn: Yup.string().matches(/^[0-9]{1,10}$/,'Invalid ISBN.ISBN must not be more than 10 digits').required("Field is empty"),
+      isbn: Yup.string().matches(/^[0-9]{1,10}$/,'ISBN must not be more than 10 digits').required("Field is empty"),
       pubdate: Yup.string().required("Field is empty"),
     }),
     author: Yup.object().shape({
