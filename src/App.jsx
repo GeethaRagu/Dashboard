@@ -17,12 +17,12 @@ const App = () => {
         <h2 className="title">Manage Books and Authors</h2>
         <hr className="title_hr" />
         <Row>
-          <Col className="col-2">
+          <Col className="col-md-2">
             <div>
-              <Side/>
+              <Sidebar/>
             </div>
           </Col>
-          <Col className="col-10">
+          <Col className="col-md-10">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />

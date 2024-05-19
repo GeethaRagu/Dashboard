@@ -12,7 +12,7 @@ const Side = () => {
     <div>
       {[false,].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
-          <Container fluid>
+          <Container fluid className="sidebar">
             {/* <Navbar.Brand href="#">Admin</Navbar.Brand> */}
             <Link
               className="sidebar-brand d-flex align-items-center justify-content-center"
@@ -27,7 +27,7 @@ const Side = () => {
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
-            >
+              className="sidebar">
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   Admin

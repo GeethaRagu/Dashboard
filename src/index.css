@@ -9,11 +9,11 @@
 /**Side bar css**/
 .sidebar{
   background-color:hotpink;
- /* color:white;*/
-  min-height: 80vh;
+ color:white;
+  min-height: 40vh;
 }
 .sidebar-brand{
-  /*color:white;*/
+  color:white;
   font-weight:bolder;
   text-decoration: none;
 }
