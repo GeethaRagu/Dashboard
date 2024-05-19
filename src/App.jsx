@@ -7,6 +7,8 @@ import Managebook from "./Pages/Managebook";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "./Components/Footer";
 import Editbook from "./Pages/Editbook";
+import Side from "./Components/Side";
+
 
 const App = () => {
   return (
@@ -17,7 +19,7 @@ const App = () => {
         <Row>
           <Col className="col-2">
             <div>
-              <Sidebar />
+              <Side/>
             </div>
           </Col>
           <Col className="col-10">
