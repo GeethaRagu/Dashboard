@@ -36,7 +36,7 @@ const handleEdit=(bid)=>{
         <Row className="row-cols-1 row-cols-md-3">
           <Col className="col-12 col-md-12">
           <h2>Manage Books</h2>
-            <Table striped>
+            <Table striped className="table-condensed">
                 
               <thead>
                 <tr>
